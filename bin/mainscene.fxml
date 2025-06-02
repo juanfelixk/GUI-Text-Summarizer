@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Line endX="1000.0" layoutY="70.0" />
+      <Button fx:id="paragraphBtn" layoutX="60.0" layoutY="17.0" mnemonicParsing="false" text="Paragraph" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+         </padding>
+      </Button>
+      <Button fx:id="bulletBtn" layoutX="241.0" layoutY="17.0" mnemonicParsing="false" text="Bullet Points" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+         </padding>
+      </Button>
+      <Label layoutX="580.0" layoutY="26.0" text="Summary Length">
+         <font>
+            <Font name="Verdana Bold" size="13.0" />
+         </font>
+      </Label>
+      <Slider fx:id="lengthSlider" blockIncrement="1" layoutX="774.0" layoutY="28.0" majorTickUnit="1" max="2" min="0" minorTickCount="0" showTickMarks="true" snapToTicks="true" value="1" />
+      
+      <Label layoutX="734.0" layoutY="28.0" text="Short">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Label>
+      <Label layoutX="919.0" layoutY="28.0" text="Long">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font></Label>
+      <Button fx:id="summarizeBtn" layoutX="339.0" layoutY="537.0" mnemonicParsing="false" text="Summarize" textAlignment="CENTER">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="12.0" left="25.0" right="25.0" top="12.0" />
+         </padding>
+      </Button>
+      <Line endY="530.0" layoutX="500.0" layoutY="70.0" />
+      <Label fx:id="inputCount" layoutX="25.0" layoutY="551.0" text="0 words">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="outputCount" layoutX="535.0" layoutY="551.0" text="0 words">
+         <font>
+            <Font name="Verdana" size="12.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="inputArea" layoutX="40.0" layoutY="122.0" prefHeight="360.0" prefWidth="420.0" promptText="Input text here..." wrapText="true">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font></TextArea>
+      <TextArea fx:id="outputArea" editable="false" focusTraversable="false" layoutX="540.0" layoutY="122.0" prefHeight="360.0" prefWidth="420.0" promptText="Summarized text will be shown here." wrapText="true">
+         <font>
+            <Font name="Verdana" size="13.0" />
+         </font></TextArea>
+      <Button fx:id="statsBtn" layoutX="921.0" layoutY="544.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="clearBtn" layoutX="420.0" layoutY="491.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bin.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="pasteBtn" layoutX="370.0" layoutY="491.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@paste.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="copyBtn" layoutX="871.0" layoutY="544.0" mnemonicParsing="false">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@copy.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
