@@ -1,0 +1,47 @@
+AnchorPane {
+    -fx-background-color: #F5FAFF;
+}
+
+Line {
+    -fx-stroke-width: 1px;
+    -fx-stroke: #3E5A9A;
+}
+
+Button {
+    -fx-cursor: hand;
+}
+
+#paragraphBtn, #bulletBtn {
+    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+}
+
+#paragraphBtn:hover, #bulletBtn:hover {
+    -fx-background-color: #E1E6EE;
+}
+
+#statsBtn, #clearBtn, #copyBtn, #pasteBtn {
+    -fx-background-color:#F5FAFF;
+    -fx-border-width: 1.5px;
+    -fx-border-color: #5579C6;
+    -fx-border-radius: 5px;
+}
+#statsBtn:hover, #clearBtn:hover, #copyBtn:hover, #pasteBtn:hover {
+    -fx-scale-x: 1.07;
+    -fx-scale-y: 1.07;
+}
+
+#summarizeBtn {
+    -fx-background-radius: 20px;
+    -fx-background-color:#5579C6;
+    -fx-text-fill: #FFF;
+}
+
+#summarizeBtn:hover {
+    -fx-background-color: #3E5A9A;
+}
+
+TextArea:focused, Slider:focused {
+    -fx-focus-color: #3E5A9A;
+    -fx-faint-focus-color: transparent;
+}

@@ -4,14 +4,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" style="-fx-background-color: 000;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StatsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StatsController" stylesheets="@stats.css" styleClass="main-pain">
    <children>
       <Label layoutX="209.0" layoutY="24.0" text="Statistics">
          <font>
             <Font name="Verdana Bold" size="16.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="107.0" layoutY="64.0" prefHeight="49.0" prefWidth="286.0" style="-fx-background-color: #f1f1f1; -fx-background-radius: 10;">
+      <AnchorPane layoutX="107.0" layoutY="64.0" prefHeight="49.0" prefWidth="286.0" styleClass="children-pain">
          <children>
             <Label layoutX="23.0" layoutY="16.0" text="Sentence Count">
                <font>
@@ -21,7 +21,7 @@
             <Label fx:id="sentenceStats" layoutY="16.0" text="XX to XX" AnchorPane.rightAnchor="20.0" style="-fx-alignment: CENTER_RIGHT;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="107.0" layoutY="128.0" prefHeight="49.0" prefWidth="286.0" style="-fx-background-color: #f1f1f1; -fx-background-radius: 10;">
+      <AnchorPane layoutX="107.0" layoutY="128.0" prefHeight="49.0" prefWidth="286.0" styleClass="children-pain">
          <children>
             <Label layoutX="23.0" layoutY="16.0" text="Word Count">
                <font>
@@ -31,7 +31,7 @@
             <Label fx:id="wordStats" layoutY="16.0" text="XX to XX" AnchorPane.rightAnchor="20.0" style="-fx-alignment: CENTER_RIGHT;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="107.0" layoutY="192.0" prefHeight="49.0" prefWidth="286.0" style="-fx-background-color: #f1f1f1; -fx-background-radius: 10;">
+      <AnchorPane layoutX="107.0" layoutY="192.0" prefHeight="49.0" prefWidth="286.0" styleClass="children-pain">
          <children>
             <Label layoutX="23.0" layoutY="16.0" text="Reduction">
                <font>

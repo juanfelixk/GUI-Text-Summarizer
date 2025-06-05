@@ -11,9 +11,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@mainscene.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Line endX="1000.0" layoutY="70.0" />
+      <Line endX="1000.0" layoutY="73.0" />
       <Button fx:id="paragraphBtn" layoutX="60.0" layoutY="17.0" mnemonicParsing="false" text="Paragraph" textAlignment="CENTER">
          <font>
             <Font name="Verdana Bold" size="13.0" />
@@ -53,7 +53,7 @@
             <Insets bottom="12.0" left="25.0" right="25.0" top="12.0" />
          </padding>
       </Button>
-      <Line endY="530.0" layoutX="500.0" layoutY="70.0" />
+      <Line endY="530.0" layoutX="500.0" layoutY="73.0" />
       <Label fx:id="inputCount" layoutX="25.0" layoutY="551.0" text="0 words">
          <font>
             <Font name="Verdana" size="12.0" />
@@ -108,5 +108,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <Line endX="-53.5" layoutX="205.0" layoutY="52.0" startX="-100.0" fx:id="underline1" />
+      <Line endX="-53.5" layoutX="394.0" layoutY="52.0" startX="-100.0" fx:id="underline2" />
    </children>
 </AnchorPane>

@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.shape.Line;
 
 public class Controller {
     private Stage window;
@@ -35,6 +36,8 @@ public class Controller {
     @FXML private Button pasteBtn;
     @FXML private Button clearBtn;
     @FXML private Button statsBtn;
+    @FXML private Line underline1;
+    @FXML private Line underline2;
 
     private double summaryRatio;
     private boolean paragraphFormat;
@@ -45,19 +48,19 @@ public class Controller {
         TFIDFSummarizer summarizer = new TFIDFSummarizer(TreeMap::new, TreeMap::new, new DefaultTextProcessor(new SnowballStemmer()));
 
         paragraphFormat = true;
-        paragraphBtn.setStyle("-fx-border-color: #007ACC; -fx-border-width: 2px;"); 
-        bulletBtn.setStyle("-fx-border-color: transparent;");
+        underline1.setVisible(paragraphFormat);
+        underline2.setVisible(!paragraphFormat);
 
         paragraphBtn.setOnAction((ActionEvent ae) -> {
             paragraphFormat = true;
-            paragraphBtn.setStyle("-fx-border-color: #007ACC; -fx-border-width: 2px;");
-            bulletBtn.setStyle("-fx-border-color: transparent;");
+            underline1.setVisible(paragraphFormat);
+            underline2.setVisible(!paragraphFormat);
         });
 
         bulletBtn.setOnAction((ActionEvent ae) -> {
             paragraphFormat = false;
-            bulletBtn.setStyle("-fx-border-color: #007ACC; -fx-border-width: 2px;");
-            paragraphBtn.setStyle("-fx-border-color: transparent;");
+            underline1.setVisible(paragraphFormat);
+            underline2.setVisible(!paragraphFormat);
         });
 
         inputArea.textProperty().addListener((obs, oldText, newText) -> {

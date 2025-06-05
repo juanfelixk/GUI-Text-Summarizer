@@ -1,0 +1,8 @@
+.main-pain {
+    -fx-background-color: #F5FAFF;
+}
+
+.children-pain {
+    -fx-background-color: #E1E6EE;
+    -fx-background-radius: 10px;
+}
