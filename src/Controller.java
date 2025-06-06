@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javafx.event.ActionEvent;
@@ -45,7 +47,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        TFIDFSummarizer summarizer = new TFIDFSummarizer(TreeMap::new, TreeMap::new, new DefaultTextProcessor(new SnowballStemmer()));
+        TFIDFSummarizer summarizer = new TFIDFSummarizer(ConcurrentSkipListMap::new, ConcurrentSkipListMap::new, new DefaultTextProcessor(new SnowballStemmer()));
 
         paragraphFormat = true;
         underline1.setVisible(paragraphFormat);
@@ -88,7 +90,18 @@ public class Controller {
     });
 
         summarizeBtn.setOnAction((ActionEvent ae) -> {
-            String summary = summarizer.summarize(inputArea.getText(), summaryRatio);
+            Runtime runtime = Runtime.getRuntime();
+            runtime.gc();
+            long memoryBefore = runtime.totalMemory() - runtime.freeMemory();
+            long startTime = System.nanoTime();
+            String summary = summarizer.summarize(inputArea.getText (), summaryRatio);
+            long endTime = System.nanoTime();
+            long memoryAfter = runtime.totalMemory() - runtime.freeMemory();
+            double duration = (double) (endTime - startTime) / 1_000_000;
+            double memoryUsed = (double) (memoryAfter - memoryBefore) / 1024 / 1024;
+            System.out.printf("Runtime: %.3f ms, ", duration);
+            System.out.printf("Memory used: %.3f MB\n", memoryUsed);
+
             if (!paragraphFormat) {
                 String[] sents = splitter.splitIntoSentences(summary);
                 String formatted = IntStream.range(0, sents.length).mapToObj(i -> "• " + sents[i].trim()).collect(Collectors.joining("\n"));
