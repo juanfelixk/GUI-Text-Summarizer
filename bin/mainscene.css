@@ -7,6 +7,10 @@ Line {
     -fx-stroke: #3E5A9A;
 }
 
+#underline1, #underline2 {
+    -fx-stroke-width: 2px;
+}
+
 Button {
     -fx-cursor: hand;
 }
