@@ -47,7 +47,7 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        TFIDFSummarizer summarizer = new TFIDFSummarizer(ConcurrentSkipListMap::new, ConcurrentSkipListMap::new, new DefaultTextProcessor(new SnowballStemmer()));
+        TFIDFSummarizer summarizer = new TFIDFSummarizer(HashMap::new, HashMap::new, new DefaultTextProcessor(new SnowballStemmer()));
 
         paragraphFormat = true;
         underline1.setVisible(paragraphFormat);
@@ -65,6 +65,7 @@ public class Controller {
             underline2.setVisible(!paragraphFormat);
         });
 
+        // Change word count in real time
         inputArea.textProperty().addListener((obs, oldText, newText) -> {
             inputCount.setText(countWord(newText) + " words");
             if (newText == null || newText.isEmpty()) {
@@ -73,7 +74,7 @@ public class Controller {
             }
         });
         
-        summaryRatio = 0.3;
+        summaryRatio = 0.3; // Default value
         lengthSlider.valueProperty().addListener((obs, oldV, newV) -> {
             int sliderVal = newV.intValue();      
             switch (sliderVal) {
@@ -87,9 +88,10 @@ public class Controller {
                     summaryRatio = 0.4;
                     break;
             }
-    });
+        });
 
         summarizeBtn.setOnAction((ActionEvent ae) -> {
+            // Measure runtime and memory used
             Runtime runtime = Runtime.getRuntime();
             runtime.gc();
             long memoryBefore = runtime.totalMemory() - runtime.freeMemory();
@@ -104,7 +106,9 @@ public class Controller {
 
             if (!paragraphFormat) {
                 String[] sents = splitter.splitIntoSentences(summary);
-                String formatted = IntStream.range(0, sents.length).mapToObj(i -> "• " + sents[i].trim()).collect(Collectors.joining("\n"));
+                // Add bullet points to the beginning of everys sentence
+                String formatted = IntStream.range(0, sents.length).mapToObj(i -> "• " + sents[i].trim())
+                    .collect(Collectors.joining("\n"));
                 outputArea.setText(formatted);
             } else {
                 outputArea.setText(summary);
@@ -154,11 +158,11 @@ public class Controller {
     }
 
     private int countWord(String text) {
-        String trimmed = (text == null ? "" : text.replace("•", "").trim());
+        String trimmed = (text == null ? "" : text.replace("•", "").trim()); // Remove bullet points
         if (trimmed.isEmpty()) {
             return 0;
         } else {
-            return trimmed.split("\\s+").length;
+            return trimmed.split("\\s+").length; // Split based on whitespace
         }
     }
 }

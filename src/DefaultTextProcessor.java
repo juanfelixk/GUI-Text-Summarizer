@@ -23,7 +23,7 @@ public class DefaultTextProcessor implements TextProcessor {
         List<String> sentences = List.of(splitter.splitIntoSentences(text));
         return sentences.stream()
             .map(s -> Arrays.stream(
-                    s.replaceAll("[^a-zA-Z\\s]", "") // Remove non-alphabetical characters (punctuation, etc.)
+                    s.replaceAll("[^a-zA-Z\\s]", "") // Remove non alphabetical characters
                      .toLowerCase() // Convert the text to lowercase
                      .split("\\s+")) // Split the sentence into words
                 .filter(tok -> !tok.isEmpty() && !stopWords.contains(tok)) // Filter out empty tokens and stop words

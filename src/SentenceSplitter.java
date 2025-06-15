@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 public class SentenceSplitter {
-    private static final Set<String> ABBREVIATIONS = new HashSet<>(Set.of(
+    private static final Set<String> HONORIFICS = new HashSet<>(Set.of(
         "Mr.", "Mrs.", "Dr.", "Ms.", "Jr.", "Sr.", "Prof."
     ));
 
@@ -15,6 +15,7 @@ public class SentenceSplitter {
             return new String[0];
         }
 
+        // Clean bullet points
         text = text.replace("•", "");
 
         StringBuilder current = new StringBuilder();
@@ -23,23 +24,19 @@ public class SentenceSplitter {
         for (int i = 0; i < length; i++) {
             char c = text.charAt(i);
             current.append(c);
-
-            // If we see a potential sentence‐ending punctuation:
+            // Check for a potential ending punctuation
             if (c == '.' || c == '!' || c == '?') {
-                // 1) Look backward to capture the word or token ending at this punctuation:
+                // Look backward to capture the word or token ending at this punctuation
                 int k = i;
                 while (k >= 0 && (Character.isLetter(text.charAt(k)) || text.charAt(k) == '.')) {
                     k--;
                 }
-                // The token is from k+1 up to i (inclusive), e.g. "Mr." or "requirement."
                 String token = text.substring(k + 1, i + 1);
-
-                // If that token is a known abbreviation, do NOT split here:
-                if (ABBREVIATIONS.contains(token)) {
+                // If token is a known honorific, do not split
+                if (HONORIFICS.contains(token)) {
                     continue;
                 }
-
-                // 2) Move forward past any spaces **and** any closing‐quote characters:
+                // Move forward past any spaces and any closing quotes
                 int j = i + 1;
                 while (j < length && (
                           Character.isWhitespace(text.charAt(j))
@@ -48,24 +45,20 @@ public class SentenceSplitter {
                      )) {
                     j++;
                 }
-
-                // 3) Now, if j is at end‐of‐text OR the next character is uppercase or an opening quote,
-                //    treat this as a real sentence break:
+                // If j is at end or the next character is uppercase or an opening quote, split the sentence
                 if (j >= length
                         || Character.isUpperCase(text.charAt(j))
                         || text.charAt(j) == '"' 
                         || text.charAt(j) == '“') {
-                    // Add the sentence we've built so far
                     sentences.add(current.toString().trim());
                     current.setLength(0);
-
-                    // Advance i to j-1 (so the for-loop’s i++ lands us at j)
+                    // Advance i to j-1 (so the for loop’s i++ lands at j)
                     i = j - 1;
                 }
             }
         }
 
-        // Add any remaining text as the final sentence (if non-empty)
+        // Add any remaining text as the final sentence (if not empty)
         if (current.length() > 0) {
             sentences.add(current.toString().trim());
         }

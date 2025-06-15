@@ -57,8 +57,8 @@ public class TFIDFSummarizer extends AbstractSummarizer{
         List<Integer> rank = IntStream.range(0, scoreList.size()) // Generates stream from index 0 to size of scoreList
         .boxed() // Box primitive int into wrapper class Integer
         .sorted((i, j) -> Double.compare(scoreList.get(j), scoreList.get(i))) // Sort sentence indices by their score descending
-        .limit(summarySize) // take top summarySize indices
-        .sorted() // Restore original sentence order (ascending)
+        .limit(summarySize) // Take top summarySize indices
+        .sorted() // Restore original sentence order
         .collect(Collectors.toList());
 
         return rank.stream().map(sentences::get).collect(Collectors.joining(" "));
